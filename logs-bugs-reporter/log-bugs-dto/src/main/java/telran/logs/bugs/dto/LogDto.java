@@ -12,17 +12,17 @@ public class LogDto {
     public LogType logType;
     @NotEmpty
 
-    public String artefact;
+    public String artifact;
 
     public int responseTime;
     public String result;
 
-    public LogDto(@NotNull Date dateTime, @NotNull LogType logType, @NotEmpty String artefact, int responseTime,
+    public LogDto(@NotNull Date dateTime, @NotNull LogType logType, @NotEmpty String artifact, int responseTime,
 	    String result) {
 	super();
 	this.dateTime = dateTime;
 	this.logType = logType;
-	this.artefact = artefact;
+	this.artifact = artifact;
 	this.responseTime = responseTime;
 	this.result = result;
     }
@@ -31,7 +31,7 @@ public class LogDto {
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
-	result = prime * result + ((artefact == null) ? 0 : artefact.hashCode());
+	result = prime * result + ((artifact == null) ? 0 : artifact.hashCode());
 
 	result = prime * result + ((dateTime == null) ? 0 : dateTime.hashCode());
 	result = prime * result + ((logType == null) ? 0 : logType.hashCode());
@@ -48,10 +48,10 @@ public class LogDto {
 	if (getClass() != obj.getClass())
 	    return false;
 	LogDto other = (LogDto) obj;
-	if (artefact == null) {
-	    if (other.artefact != null)
+	if (artifact == null) {
+	    if (other.artifact != null)
 		return false;
-	} else if (!artefact.equals(other.artefact))
+	} else if (!artifact.equals(other.artifact))
 	    return false;
 	if (dateTime == null) {
 	    if (other.dateTime != null)
