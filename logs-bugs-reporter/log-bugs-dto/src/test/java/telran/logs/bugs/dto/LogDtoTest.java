@@ -52,36 +52,40 @@ class LogDtoTest {
 	TestController.logDtoExp.result = "";
     }
 
+    public void postDtoWithResponceCode(int responceCode) throws Exception {
+	assertEquals(responceCode,
+		mock.perform(post("/").contentType(MediaType.APPLICATION_JSON)
+			.content(mapper.writeValueAsString(TestController.logDtoExp))).andReturn().getResponse()
+			.getStatus());
+    }
+
+    @Test
+    void testNormal() throws Exception {
+	postDtoWithResponceCode(200);
+    }
     @Nested
     class faildTests {
 	@DisplayName("dateTime = null")
 	@Test
 	void testArifactDateNull() throws Exception {
 	    TestController.logDtoExp.dateTime = null;
-	    assertEquals(400,
-		    mock.perform(post("/").contentType(MediaType.APPLICATION_JSON)
-			    .content(mapper.writeValueAsString(TestController.logDtoExp))).andReturn().getResponse()
-			    .getStatus());
+	    postDtoWithResponceCode(400);
 	}
+
+
 
 	@DisplayName("logType = null")
 	@Test
 	void testLogType() throws Exception {
 	    TestController.logDtoExp.logType = null;
-	    assertEquals(400,
-		    mock.perform(post("/").contentType(MediaType.APPLICATION_JSON)
-			    .content(mapper.writeValueAsString(TestController.logDtoExp))).andReturn().getResponse()
-			    .getStatus());
+	    postDtoWithResponceCode(400);
 	}
 
 	@DisplayName("artifact = ''")
 	@Test
 	void testArifactEmpty() throws Exception {
 	    TestController.logDtoExp.artifact = "";
-	    assertEquals(400,
-		    mock.perform(post("/").contentType(MediaType.APPLICATION_JSON)
-			    .content(mapper.writeValueAsString(TestController.logDtoExp))).andReturn().getResponse()
-			    .getStatus());
+	    postDtoWithResponceCode(400);
 	}
     }
 }
